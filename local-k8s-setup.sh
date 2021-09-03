@@ -1,5 +1,6 @@
 #This script will install kubernetes on local machine.
 sudo swapoff -a
+sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 sudo apt-get update
 sudo apt-get install docker.io -y
 sudo apt-get install -y apt-transport-https ca-certificates curl
