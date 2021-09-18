@@ -17,7 +17,6 @@ sudo kubeadm init --pod-network-cidr=10.0.1.0/16
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
-sudo kubectl apply -f 
-sudo curlhttps://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml -O
+sudo curl https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml -O
 kubectl apply -f kube-flannel.yml
 
