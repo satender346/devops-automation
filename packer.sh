@@ -5,10 +5,17 @@ curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 sudo apt-get update -y && sudo apt-get install packer -y
 sudo apt-add-repository ppa:ansible/ansible -y
+
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
 sudo apt-get update -y
+sudo apt install docker-ce
 
 
 apt-get install docker.io git -y
+sudo usermod -aG docker ${USER}
+
 sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
 
 # Terraform installation
@@ -39,5 +46,5 @@ sudo apt-get install build-essential make -y
 
 # Jenkins Installation
 mkdir -p /var/jenkins_home
-chmod 777 /var/jenkins_home
-docker run -p 8080:8080 -p 50000:50000 -v /var/jenkins_home:/var/jenkins_home jenkins
+sudo chmod 777 /var/jenkins_home
+sudo docker run --restart=always -p 8080:8080 -p 50000:50000 -v /var/jenkins_home:/var/jenkins_home jenkins
