@@ -10,11 +10,9 @@ sudo apt install apt-transport-https ca-certificates curl software-properties-co
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
 sudo apt-get update -y
-sudo apt install docker-ce
 
-sudo apt-get install zip unzip -y 
-apt-get install docker.io git -y
-sudo usermod -aG docker ${USER}
+sudo apt-get install zip unzip git -y 
+
 
 sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
 
@@ -45,6 +43,7 @@ sudo apt-get install build-essential make -y
 
 # Jenkins Installation
 sudo apt-get install docker.io -y
+sudo usermod -aG docker ${USER}
 sudo mkdir -p /var/jenkins_home
 
 sudo chmod 777 /var/jenkins_home
