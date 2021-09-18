@@ -38,8 +38,9 @@ sudo apt-get install helm -y
 sudo apt-get install build-essential make -y
 
 # Jenkins Installation
-wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
 sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 sudo apt update
-sudo apt install jenkins
-sudo systemctl start jenkins
+sudo apt-get install openjdk-8-jdk -y
+sudo apt install jenkins -y
+#sudo systemctl start jenkins
