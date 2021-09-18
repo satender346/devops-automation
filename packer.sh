@@ -38,9 +38,6 @@ sudo apt-get install helm -y
 sudo apt-get install build-essential make -y
 
 # Jenkins Installation
-wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
-sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-sudo apt update
-sudo apt-get install openjdk-8-jdk -y
-sudo apt install jenkins -y
-#sudo systemctl start jenkins
+mkdir -p /var/jenkins_home
+chmod 777 /var/jenkins_home
+docker run -p 8080:8080 -p 50000:50000 -v /var/jenkins_home:/var/jenkins_home jenkins
