@@ -12,7 +12,7 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt-get update -y
 sudo apt install docker-ce
 
-
+sudo apt-get install zip unzip -y 
 apt-get install docker.io git -y
 sudo usermod -aG docker ${USER}
 
@@ -27,8 +27,7 @@ sudo unzip awscliv2.zip
 sudo ./aws/install
 sudo ./aws/install -i /usr/local/aws-cli -b /usr/local/bin
 
-pass=$(perl -e 'print crypt($ARGV[0], "password")' summit)
-useradd -m -s /bin/bash -p $pass summit
+sudo useradd -m -s /bin/bash -p $(perl -e 'print crypt($ARGV[0], "password")' devops) devops
 sudo echo 'summit  ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 [ $? -eq 0 ] && echo "User has been added to system!" || echo "Failed to add a user!"
 sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
