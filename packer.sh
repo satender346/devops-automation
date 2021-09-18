@@ -1,11 +1,17 @@
+# Package script to install jenkins, git, docker, helm, terraform
+
 sudo apt-get update
 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 sudo apt-get update -y && sudo apt-get install packer -y
 sudo apt-add-repository ppa:ansible/ansible -y
 sudo apt-get update -y
-apt-get install docker.io git helm -y
+
+
+apt-get install docker.io git -y
 sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
+
+# Terraform installation
 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 sudo apt-get update -y && sudo apt-get install terraform -y
@@ -23,6 +29,15 @@ sed -i 's/#   PasswordAuthentication yes/   PasswordAuthentication yes/g' /etc/s
 echo 'summit  ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 service ssh reload
 
+# Helm Installation
+curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
+sudo apt-get install apt-transport-https --yes
+echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+sudo apt-get update
+sudo apt-get install helm -y
+sudo apt-get install build-essential make -y
+
+# Jenkins Installation
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
 sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 sudo apt update
