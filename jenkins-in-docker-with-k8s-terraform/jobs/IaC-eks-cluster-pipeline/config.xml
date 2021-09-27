@@ -34,7 +34,7 @@
            terraform init
            terraform plan
            terraform apply --auto-approve
-           cp kubeconfig /var/jenkins_home/kubeconfig
+           cp kubeconfig_eks-cluster /var/jenkins_home/kubeconfig
  
         """
     }
