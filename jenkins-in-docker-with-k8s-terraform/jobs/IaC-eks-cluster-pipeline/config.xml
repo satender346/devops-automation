@@ -29,10 +29,11 @@
         git branch: 'main', url: 'https://github.com/satender346/IaC-eks-example.git'
     }
     stage("Create EKS cluster"){
-        sh "terraform init"
-        sh "terraform plan"
-        sh "terraform apply --auto-approve"
         sh """
+           source /var/jenkins_home/aws_credentials
+           terraform init .
+           terraform plan
+           terraform apply --auto-approve
            FILE=.kubeconfig
            if test -f "$FILE"; then
               cp .kubeconfig /var/jenkins_home/kubeconfig
