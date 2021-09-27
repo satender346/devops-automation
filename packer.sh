@@ -47,6 +47,8 @@ sudo usermod -aG docker ${USER}
 sudo mkdir -p /var/jenkins_home
 
 sudo chmod 777 /var/jenkins_home
+cp -r jenkins-in-docker-with-k8s-terraform/jobs /var/jenkins_home/
+cp -r jenkins-in-docker-with-k8s-terraform/* .
 sudo docker build -t jenkins-lts .
 sudo docker run -d --name=jenkins-master --restart=always -p 8080:8080 -p 50000:50000 -v /var/jenkins_home:/var/jenkins_home jenkins-lts:latest
 
