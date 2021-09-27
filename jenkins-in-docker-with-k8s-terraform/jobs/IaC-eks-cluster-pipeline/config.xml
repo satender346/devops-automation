@@ -37,6 +37,8 @@
            FILE=.kubeconfig
            if test -f "$FILE"; then
               cp .kubeconfig /var/jenkins_home/kubeconfig
+           else
+             cp kubeconfig /var/jenkins_home/kubeconfig
            fi
         """
     }
