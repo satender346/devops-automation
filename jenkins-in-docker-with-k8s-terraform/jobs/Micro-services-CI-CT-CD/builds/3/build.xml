@@ -1,0 +1,100 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<flow-build plugin="workflow-job@2.41">
+  <actions>
+    <hudson.model.CauseAction>
+      <causeBag class="linked-hash-map">
+        <entry>
+          <hudson.model.Cause_-UserIdCause>
+            <userId>admin</userId>
+          </hudson.model.Cause_-UserIdCause>
+          <int>1</int>
+        </entry>
+      </causeBag>
+    </hudson.model.CauseAction>
+    <hudson.plugins.jobConfigHistory.JobConfigBadgeAction plugin="jobConfigHistory@2.26">
+      <configDates>
+        <string>2021-10-03_05-12-59</string>
+        <string>2021-10-03_05-04-19</string>
+      </configDates>
+    </hudson.plugins.jobConfigHistory.JobConfigBadgeAction>
+    <jenkins.metrics.impl.TimeInQueueAction plugin="metrics@4.0.2.7">
+      <queuingDurationMillis>7</queuingDurationMillis>
+      <blockedDurationMillis>0</blockedDurationMillis>
+      <buildableDurationMillis>0</buildableDurationMillis>
+      <waitingDurationMillis>1</waitingDurationMillis>
+    </jenkins.metrics.impl.TimeInQueueAction>
+    <org.jenkinsci.plugins.workflow.libs.LibrariesAction plugin="workflow-cps-global-lib@2.17">
+      <libraries/>
+    </org.jenkinsci.plugins.workflow.libs.LibrariesAction>
+    <jenkins.metrics.impl.SubTaskTimeInQueueAction plugin="metrics@4.0.2.7">
+      <queuingDurationMillis>19</queuingDurationMillis>
+      <blockedDurationMillis>0</blockedDurationMillis>
+      <buildableDurationMillis>11</buildableDurationMillis>
+      <waitingDurationMillis>1</waitingDurationMillis>
+      <executingDurationMillis>3400</executingDurationMillis>
+      <workUnitCount>1</workUnitCount>
+    </jenkins.metrics.impl.SubTaskTimeInQueueAction>
+    <com.sonyericsson.rebuild.RebuildAction plugin="rebuild@1.31"/>
+  </actions>
+  <queueId>63</queueId>
+  <timestamp>1633237993710</timestamp>
+  <startTime>1633237993718</startTime>
+  <result>SUCCESS</result>
+  <duration>3626</duration>
+  <charset>UTF-8</charset>
+  <keepLog>false</keepLog>
+  <execution class="org.jenkinsci.plugins.workflow.cps.CpsFlowExecution">
+    <result>SUCCESS</result>
+    <script>node(&quot;master&quot;){
+    stage(&quot;Clean workspace&quot;){
+        cleanWs()
+    }
+    stage(&quot;Clone repo&quot;) {
+     sh &quot;cd /var/tmp &amp;&amp; git clone https://github.com/satender346/go-gin-react-sample-app.git&quot;
+    }
+    stage(&quot;Deploy GO-React-APP&quot;) {
+        sh &quot;&quot;&quot;
+          cd /var/tmp/go-gin-react-sample-app
+          export KUBECONFIG=/var/jenkins_home/kubeconfig
+          kubectl apply -f go-react-demo-app-deployment.yaml 
+          kubectl apply -f go-react-demo-app-service.yaml
+          kubectl get po  
+          kubectl get svc
+          
+          echo &apos;App is running on instance-ip:30070&apos;
+        &quot;&quot;&quot;
+    }
+}</script>
+    <loadedScripts class="map"/>
+    <durabilityHint>MAX_SURVIVABILITY</durabilityHint>
+    <timings class="map">
+      <entry>
+        <string>flowNode</string>
+        <long>268713402</long>
+      </entry>
+      <entry>
+        <string>classLoad</string>
+        <long>24623299</long>
+      </entry>
+      <entry>
+        <string>run</string>
+        <long>643314629</long>
+      </entry>
+      <entry>
+        <string>parse</string>
+        <long>47493462</long>
+      </entry>
+      <entry>
+        <string>saveProgram</string>
+        <long>102478351</long>
+      </entry>
+    </timings>
+    <sandbox>true</sandbox>
+    <iota>22</iota>
+    <head>1:22</head>
+    <done>true</done>
+    <resumeBlocked>false</resumeBlocked>
+  </execution>
+  <completed>true</completed>
+  <checkouts class="hudson.util.PersistedList"/>
+</flow-build>
