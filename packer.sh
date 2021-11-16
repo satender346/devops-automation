@@ -26,11 +26,11 @@ sudo ./aws/install
 sudo ./aws/install -i /usr/local/aws-cli -b /usr/local/bin
 
 sudo useradd -m -s /bin/bash -p $(perl -e 'print crypt($ARGV[0], "password")' devops) devops
-sudo echo 'summit  ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+sudo echo 'devops  ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 [ $? -eq 0 ] && echo "User has been added to system!" || echo "Failed to add a user!"
 sudo sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 sudo sed -i 's/#   PasswordAuthentication yes/   PasswordAuthentication yes/g' /etc/ssh/ssh_config
-sudo echo 'summit  ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+sudo echo 'devops  ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 sudo service ssh reload
 
 # Helm Installation
