@@ -25,6 +25,7 @@
     stage("Destroy EKS cluster"){
         sh """
            source /var/jenkins_home/aws_credentials
+           cd /var/jenkins_home/jobs/IaC-eks-cluster-pipeline/workspace
            terraform destroy --auto-approve
         """
     }
